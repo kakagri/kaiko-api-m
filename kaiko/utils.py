@@ -95,8 +95,10 @@ def request_next_data(next_url: str, n_next: int = 1, headers: dict = default_he
 
     res_tmp = res
     counter = 1
+    res['total_queries'] = 1
     while 'next_url' in res_tmp.keys():
         response = session.get(res_tmp['next_url'], headers=headers)
+        res['total_queries'] += 1
         res_tmp = response.json()
         # append data to previous query
         res['data'] = res['data'] + res_tmp['data']

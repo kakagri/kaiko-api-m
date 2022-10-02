@@ -2,6 +2,8 @@
 Constants for the wrapper
 
 """
+
+from typing import Literal
 # Base URLs
 
 _BASE_URL_KAIKO_US = 'https://us.market-api.kaiko.io/'
@@ -18,6 +20,9 @@ _URL_TRADE_HISTORICAL_TRADES = 'v2/data/{commodity}.{data_version}/exchanges/{ex
                          '/trades'
 
 #### Order book data ####
+
+TYPE_OF_OB_SNAPSHOTS = Literal["Full", "Raw", "Depth", "Slippage"]
+TYPE_OF_OB_AGGREGATIONS = Literal["Full", "Depth", "Slippage"]
 
 _URL_ORDER_BOOK_SNAPSHOTS_FULL = 'v2/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}' \
                                  '/snapshots/full'
@@ -36,6 +41,9 @@ _URL_ORDER_BOOK_AGGREGATIONS_SLIPPAGE = 'v2/data/{commodity}.{data_version}/exch
                                         '/ob_aggregations/depth'
 
 #### Aggregates data ####
+
+TYPE_OF_AGGREGATES = Literal["OHLCV", "VWAP", "COHLCV_VWAP"]
+
 _URL_AGGREGATES_OHLCV = 'v2/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations' \
                           '/ohlcv'
 _URL_AGGREGATES_VWAP = 'v2/data/{commodity}.{data_version}/exchanges/{exchange}/{instrument_class}/{instrument}/aggregations' \
@@ -45,11 +53,17 @@ _URL_AGGREGATES_COHLCV_VWAP = 'v2/data/{commodity}.{data_version}/exchanges/{exc
 
 #### Pricing and valuation data ####
 
+TYPE_OF_PRICING = Literal["SpotDirectExchangeRate", "SpotExchangeRate"]
+
 _URL_PRICING_SPOT_DIRECT_EXCHANGE_RATE = 'v2/data/trades.{data_version}/spot_direct_exchange_rate/{base_asset}/{quote_asset}'
 _URL_PRICING_SPOT_EXCHANGE_RATE = 'v2/data/trades.{data_version}/spot_exchange_rate/{base_asset}/{quote_asset}'
 _URL_PRICING_VALUATION = 'v2/data/trades.{data_version}/valuation'
+_URL_PRICING_FX = '/v2/data/analytics.{data_version}/oanda_fx_rates'
+
 
 #### DEX liquidity data ####
+
+TYPE_OF_DEX_LIQUIDITY = Literal["Events", "Snapshots"]
 
 _URL_DEX_LIQUIDITY_EVENTS = 'v2/data/liquidity.v1/events'
 _URL_DEX_LIQUIDITY_SNAPSHOTS = 'v2/data/liquidity.v1/snapshots'
