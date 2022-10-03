@@ -1082,7 +1082,7 @@ class DEXLiquiditySnapshots(KaikoData):
     datetime	    Timestamp at which the interval begins.                 In milliseconds.	1650441900000
     """
 
-    def __init__(self, params: dict = dict(), client=None, **kwargs):
+    def __init__(self, params: dict = dict(), client: KaikoClient = None, **kwargs):
         '''
         Parameters are: pool_address, start_block, end_block, start_time, end_time, sort
         '''
