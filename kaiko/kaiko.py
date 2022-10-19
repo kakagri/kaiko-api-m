@@ -188,7 +188,7 @@ class KaikoData:
 
     @staticmethod
     def df_formatter(res, extra_args: dict = {}):
-        df = pd.DataFrame(res['data'], dtype = 'float')
+        df = pd.DataFrame(res['data'], dtype = 'double')
         df.set_index('timestamp', inplace=True)
         df.index = ut.convert_timestamp_unix_to_datetime(df.index)
         return df
@@ -293,7 +293,7 @@ class Trades(KaikoData):
 
     @staticmethod
     def df_formatter(res, extra_args: dict = {}):
-        df = pd.DataFrame(res['data'], dtype = 'float')
+        df = pd.DataFrame(res['data'], dtype = 'double')
         df.set_index('timestamp', inplace=True)
         df.index = ut.convert_timestamp_unix_to_datetime(df.index)
         return df
@@ -479,7 +479,7 @@ class OrderBookSnapshots(KaikoData):
         data_ = res['data']
         if len(data_) == 0:
             return pd.DataFrame()
-        df = pd.DataFrame(res['data'], dtype = 'float')
+        df = pd.DataFrame(res['data'], dtype = 'double')
         if extra_args['type_of_ob'] == 'Full':
             df = add_price_levels(df)
         df.set_index('poll_timestamp', inplace=True)
@@ -649,7 +649,7 @@ class OrderBookAggregations(KaikoData):
 
     @staticmethod
     def df_formatter(res, extra_args: dict = {}):
-        df = pd.DataFrame(res['data'], dtype = 'float')
+        df = pd.DataFrame(res['data'], dtype = 'double')
         df.set_index('poll_timestamp', inplace=True)
         df.index = ut.convert_timestamp_unix_to_datetime(df.index)
         if extra_args['type_of_ob'] == 'Full':
@@ -799,7 +799,7 @@ class Aggregates(KaikoData):
         self._request_api()
     @staticmethod
     def df_formatter(res, extra_args: dict = {}):
-        df = pd.DataFrame(res['data'], dtype = 'float')
+        df = pd.DataFrame(res['data'], dtype = 'double')
         df.set_index('timestamp', inplace=True)
         df.index = ut.convert_timestamp_unix_to_datetime(df.index)
         return df
@@ -914,7 +914,7 @@ class AssetPricing(KaikoData):
     @staticmethod
     def df_formatter(res, extra_args: dict = {}):
         data_ = res['data']
-        df = pd.DataFrame(res['data'], dtype = 'float')
+        df = pd.DataFrame(res['data'], dtype = 'double')
         df.set_index('timestamp', inplace=True)
         df.index = ut.convert_timestamp_unix_to_datetime(df.index)
         return df
@@ -1035,7 +1035,7 @@ class Valuation(KaikoData):
         if 'sources' in data_[0].keys(): ## hacky solution for now
             data_ = format_sources_valuation(data_)
         
-        df = pd.DataFrame(res['data'], dtype = 'float')
+        df = pd.DataFrame(res['data'], dtype = 'double')
         df.set_index('timestamp', inplace=True)
         df.index = ut.convert_timestamp_unix_to_datetime(df.index)
         return df
@@ -1098,7 +1098,7 @@ class DEXLiquidityEvents(KaikoData):
 
     @staticmethod
     def df_formatter(res, extra_args: dict = {}):
-        df = pd.DataFrame(res['data'], dtype = 'float')
+        df = pd.DataFrame(res['data'], dtype = 'double')
         df.set_index('datetime', inplace=True)
         df.index = ut.convert_timestamp_unix_to_datetime(df.index, unit ='s')
         return df
@@ -1150,7 +1150,7 @@ class DEXLiquiditySnapshots(KaikoData):
 
     @staticmethod
     def df_formatter(res, extra_args: dict = {}):
-        df = pd.DataFrame(res['data'], dtype = 'float')
+        df = pd.DataFrame(res['data'], dtype = 'double')
         df.set_index('datetime', inplace=True)
         df.index = ut.convert_timestamp_unix_to_datetime(df.index, unit='s')
         return df
